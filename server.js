@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import voterRoutes from "./routes/voterRoutes.js";
 import masterRoutes from "./routes/masterRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -15,6 +16,7 @@ app.use(express.json());
 // API routes
 app.use("/api/voters", voterRoutes);
 app.use("/api/master", masterRoutes);
+app.use("/api/users", userRoutes);
 
 
 app.get("/", (req, res) => {

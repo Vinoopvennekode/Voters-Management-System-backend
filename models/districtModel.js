@@ -8,10 +8,12 @@ const districtSchema = new mongoose.Schema(
     // Common fields
     isActive: { type: Boolean, default: true },
     isDeleted: { type: Boolean, default: false },
-    createdBy: { type: String },
-    modifiedBy: { type: String },
+    createdAt: { type: Date, default: Date.now },
+    modifiedAt: { type: Date, default: null },
+    createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
+    modifiedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
   },
-  { timestamps: { createdAt: "createdAt", updatedAt: "modifiedAt" } }
+  { versionKey: false }
 );
 
 export default mongoose.model("District", districtSchema);

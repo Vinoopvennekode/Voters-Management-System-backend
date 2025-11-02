@@ -13,17 +13,30 @@ const userSchema = new mongoose.Schema(
     },
     districtId: { type: mongoose.Schema.Types.ObjectId, ref: "District" },
     localBodyId: { type: mongoose.Schema.Types.ObjectId, ref: "LocalBody" },
+    wardId: { type: mongoose.Schema.Types.ObjectId, ref: "Ward" },
+    pollingStationId: { type: mongoose.Schema.Types.ObjectId, ref: "PollingStation" },
+    
     isActive: { type: Boolean, default: true },
     isDeleted: { type: Boolean, default: false },
-    createdBy: { type: String },
-    modifiedBy: { type: String },
+
+    createdBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // who created this account
+      default: null,
+    },
+    modifiedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User", // who last modified it
+      default: null,
+    },
+
     createdAt: { type: Date, default: Date.now },
     modifiedAt: { type: Date, default: null },
   },
   { versionKey: false }
 );
 
-// Hash password before saving
+// ✅ Hash password before saving
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   const salt = await bcrypt.genSalt(10);
@@ -31,7 +44,7 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-// Compare password method for login
+// ✅ Compare password
 userSchema.methods.matchPassword = async function (enteredPassword) {
   return await bcrypt.compare(enteredPassword, this.password);
 };
