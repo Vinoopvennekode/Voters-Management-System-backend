@@ -7,7 +7,7 @@ const districtSchema = new mongoose.Schema(
 
     // Common fields
     isActive: { type: Boolean, default: true },
-    isDeleted: { type: Boolean, default: false },
+    isDelete: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
     modifiedAt: { type: Date, default: null },
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },

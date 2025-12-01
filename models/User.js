@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 const userSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
-    email: { type: String, required: true, unique: true },
+    mobile: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     role: {
       type: String,
@@ -15,9 +15,9 @@ const userSchema = new mongoose.Schema(
     localBodyId: { type: mongoose.Schema.Types.ObjectId, ref: "LocalBody" },
     wardId: { type: mongoose.Schema.Types.ObjectId, ref: "Ward" },
     pollingStationId: { type: mongoose.Schema.Types.ObjectId, ref: "PollingStation" },
-    
+    isBlocked:{ type: Boolean, default: false },
     isActive: { type: Boolean, default: true },
-    isDeleted: { type: Boolean, default: false },
+    isDelete: { type: Boolean, default: false },
 
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,

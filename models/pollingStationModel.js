@@ -9,9 +9,10 @@ const pollingStationSchema = new mongoose.Schema(
     },
     name: { type: String, required: true },
     code: { type: String },
-
+    createdAt: { type: Date, default: Date.now },
+    modifiedAt: { type: Date, default: null },
     isActive: { type: Boolean, default: true },
-    isDeleted: { type: Boolean, default: false },
+    isDelete: { type: Boolean, default: false },
     createdBy: { type: String },
     modifiedBy: { type: String },
   },

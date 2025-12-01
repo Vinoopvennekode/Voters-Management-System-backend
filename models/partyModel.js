@@ -1,15 +1,11 @@
 import mongoose from "mongoose";
 
-const localBodySchema = new mongoose.Schema(
+const PartySchema = new mongoose.Schema(
   {
-    districtId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "District",
-      required: true,
-    },
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     code: { type: String },
-
+    color:{ type: String },
+    // Common fields
     isActive: { type: Boolean, default: true },
     isDelete: { type: Boolean, default: false },
     createdAt: { type: Date, default: Date.now },
@@ -17,6 +13,7 @@ const localBodySchema = new mongoose.Schema(
     createdBy: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     modifiedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },
   },
-  { versionKey: false });
+  { versionKey: false }
+);
 
-export default mongoose.model("LocalBody", localBodySchema);
+export default mongoose.model("Party", PartySchema);

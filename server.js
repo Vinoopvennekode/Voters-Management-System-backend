@@ -5,6 +5,8 @@ import connectDB from "./config/db.js";
 import voterRoutes from "./routes/voterRoutes.js";
 import masterRoutes from "./routes/masterRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import reportRoutes from "./routes/reportRoutes.js"
+import authRoutes from "./routes/auth.js";
 
 dotenv.config();
 connectDB();
@@ -17,6 +19,8 @@ app.use(express.json());
 app.use("/api/voters", voterRoutes);
 app.use("/api/master", masterRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/report", reportRoutes);
+app.use("/api/auth", authRoutes);
 
 
 app.get("/", (req, res) => {

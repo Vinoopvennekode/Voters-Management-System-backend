@@ -11,7 +11,7 @@ const wardSchema = new mongoose.Schema(
     code: { type: String },
 
     isActive: { type: Boolean, default: true },
-    isDeleted: { type: Boolean, default: false },
+    isDelete: { type: Boolean, default: false },
     createdBy: { type: String },
     modifiedBy: { type: String },
   },
